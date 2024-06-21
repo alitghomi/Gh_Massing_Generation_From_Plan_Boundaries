@@ -1,21 +1,23 @@
-# Gh_Massing_Area_Analysis
+# Gh_Massing_Generation_From_Plan_Boundaries
 
-![](https://github.com/alitghomi/Gh_Massing_Area_Analysis/blob/main/Assets/area_analysis.jpg)
-![](https://github.com/alitghomi/Gh_Massing_Area_Analysis/blob/main/Assets/area_analysis_outputs.png)
+![](https://github.com/alitghomi/Gh_Massing_Generation_From_Plan_Boundaries/blob/main/Assets/sample.jpg)
 
-This Grasshopper file contours a given massing geometry or a collection of geometries based on a list of floor-to-floor heights and outputs areas, floor heights, etc., as well as floor plan boundaries and massing blocks.
+This Grasshopper file generates a massing from given plan boundaries as well as floor-to-floor heights and floor count of each boundary curve. It also returns basic area analysis metrics of the generated massing.
 
 ## How to use
 
 ### Inputs
-#### Massing
-Series of Breps as massing
+#### Plan Boundaries
+The boundary curve
 
-#### Floor to Floor heights
-Floor to Floor heights of the given massing.
+#### Starting Elevation
+Starting elevation of each boundary curve.
 
-#### Min Ceiling Height
-The minimum acceptable ceiling height. 
+#### Floor to Floor Height
+Floor-to-floor height of each boundary curve. 
+
+#### Floor Count
+Number of floors of each boundary curve.
 
 ### Outputs
 
@@ -40,12 +42,11 @@ The total area of all floors
 #### Floor Boundaries
 The floor boundary curves 
 
-#### Massing Divided
-The floor boundary extrusions
+#### Massing Union
+Overall generated massing
 
 
 ### Notes
-- It works with multiple massings however it combines all the metrics. If you need the metrics separately you would need to adjust the code or you can copy and paste the entire thing for each massing.
-- If the massing geometry and the given floor-to-floor heights don't match, or there are slopes in the massing, the output floor-to-floor heights would vary depending on the minimum ceiling height and the discrepancies between input massing and floor-to-floor heights.
+- You can add as many curves as you want but you need to add them separately and merge them in the merge component. Every curve should have the corresponding inputs like floor count. If the number of curves and corresponding values doesn't match, the last item of the shortest list would apply to the rest. For example, if you have 2 curves and 3 floor-count inputs. the 2nd curve would be reused for the 3rd floor count. It can become confusing so I suggest keep the numbers of the inputs the same. If you have 3 curves, make sure to have 3 floor-to-floor heights and 3 floor-count, etc. even if the values are the same.
 
 
